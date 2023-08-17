@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 17, 2023 at 09:23 PM
+-- Generation Time: Aug 17, 2023 at 09:29 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -18,94 +18,94 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `perpus18`
+-- Database: `perpus`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `books` (
-  `id` bigint UNSIGNED NOT NULL,
-  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `penulis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `penerbit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `admin` (
+  `id` int NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `role` varchar(50) DEFAULT 'admin'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`, `role`) VALUES
+(1, 'admin', '$2a$04$0aJLrDDqrs2wnuDvIr55U.4VbzpUd2KAqigB3YSFhMiSItFvfmLHG', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anggota`
+--
+
+CREATE TABLE `anggota` (
+  `id` int NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `role` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `anggota`
+--
+
+INSERT INTO `anggota` (`id`, `username`, `password`, `nama`, `alamat`, `email`, `role`) VALUES
+(12, 'user', '$2a$04$7.Dx69WfwxVwON5..57P7OzqpPBx9PeRkHwQp8voAIFR.UnyN2vgO', 'Afghan Eka Pangestu', 'BUKIT WARINGIN B 1/15, RT/RW 012/010, Kel/Desa KEDUNGWARINGIN, Kecamatan BOJONG GEDE', 'afghanekapangestu@gmail.com', 'member');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buku`
+--
+
+CREATE TABLE `buku` (
+  `id` int NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `penulis` varchar(100) NOT NULL,
+  `penerbit` varchar(100) NOT NULL,
   `tahun_terbit` int NOT NULL,
-  `stok` int NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
+  `sinopsis` text,
+  `stok` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Table structure for table `failed_jobs`
+-- Dumping data for table `buku`
 --
 
-CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `members`
---
-
-CREATE TABLE `members` (
-  `id` bigint UNSIGNED NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2014_10_12_200000_add_two_factor_columns_to_users_table', 1),
-(4, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(6, '2023_08_17_182716_create_sessions_table', 1),
-(7, '2023_08_17_183131_create_members_table', 1),
-(8, '2023_08_17_183135_create_books_table', 1),
-(9, '2023_08_17_183138_create_peminjaman_table', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `buku` (`id`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `sinopsis`, `stok`) VALUES
+(1, 'Harry Potter and the Philosopher\'s Stone ', 'J.K. Rowling', 'Bloomsbury Publishing', 1997, 'Harry Potter dan Batu Bertuah adalah buku pertama dalam seri Harry Potter yang fenomenal. Dalam buku ini, kita diperkenalkan dengan dunia sihir yang penuh petualangan dan misteri.', 217),
+(2, 'The Hunger Games', 'Suzanne Collins', 'Scholastic Corporation', 2008, 'The Hunger Games adalah sebuah kompetisi mematikan yang diadakan setiap tahun di Capitol. Dalam buku ini, kita mengikuti perjuangan Katniss Everdeen untuk bertahan hidup dalam Hunger Games.', 5),
+(3, 'To Kill a Mockingbird', 'Harper Lee', 'J.B. Lippincott & Co.', 1960, 'To Kill a Mockingbird adalah sebuah kisah yang menggambarkan ketidakadilan rasial di Amerika Serikat pada tahun 1930-an. Buku ini mengikuti perjalanan Scout Finch yang belajar tentang keadilan dan empati.', 12),
+(4, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Charles Scribner\'s Sons', 1925, 'The Great Gatsby adalah sebuah kisah tentang ambisi, cinta, dan kehancuran di era Roaring Twenties. Buku ini mengikuti Jay Gatsby dalam usahanya untuk merebut kembali cinta sejatinya, Daisy Buchanan.', 14),
+(5, 'Pride and Prejudice', 'Jane Austen', 'T. Egerton, Whitehall', 1813, 'Pride and Prejudice mengisahkan tentang kisah cinta antara Elizabeth Bennet dan Mr. Darcy. Buku ini menggambarkan masyarakat Inggris pada abad ke-19 dan norma-norma yang mengatur pernikahan.', 9),
+(6, 'The Lord of the Rings', 'J.R.R. Tolkien', 'George Allen & Unwin', 1954, 'The Lord of the Rings adalah sebuah epik fantasi yang mengisahkan perjalanan Frodo Baggins dan teman-temannya dalam misi untuk menghancurkan Cincin Sauron. Buku ini penuh dengan petualangan, peperangan, dan kekuatan magis.', 7),
+(7, 'To Kill a Mockingbird', 'Harper Lee', 'J.B. Lippincott & Co.', 1960, 'To Kill a Mockingbird adalah sebuah kisah yang menggambarkan ketidakadilan rasial di Amerika Serikat pada tahun 1930-an. Buku ini mengikuti perjalanan Scout Finch yang belajar tentang keadilan dan empati.', 12),
+(8, 'The Catcher in the Rye', 'J.D. Salinger', 'Little, Brown and Company', 1951, 'The Catcher in the Rye mengisahkan tentang Holden Caulfield, seorang remaja yang mencari makna dalam kehidupan dan menghadapi kebingungan dan ketidakpuasan dalam masyarakat.', 15),
+(9, '1984', 'George Orwell', 'Secker & Warburg', 1949, '1984 adalah sebuah distopia yang menggambarkan dunia yang dikuasai oleh pemerintahan totaliter. Buku ini mengangkat tema-tema seperti pengawasan pemerintah, manipulasi informasi, dan kehilangan privasi.', 9),
+(10, 'The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', 1937, 'The Hobbit adalah sebuah cerita fantasi yang mengisahkan petualangan Bilbo Baggins dalam misi untuk merebut kembali harta karun yang dicuri oleh naga Smaug. Buku ini merupakan prekuel dari The Lord of the Rings.', 8),
+(11, 'Harry Potter and the Chamber of Secrets', 'J.K. Rowling', 'Bloomsbury Publishing', 1998, 'Harry Potter dan Kamar Rahasia adalah buku kedua dalam seri Harry Potter yang mengikuti petualangan Harry dan teman-temannya di Sekolah Sihir Hogwarts.', 12),
+(12, 'The Chronicles of Narnia: The Lion, the Witch, and the Wardrobe', 'C.S. Lewis', 'Geoffrey Bles', 1950, 'The Lion, the Witch, and the Wardrobe adalah buku pertama dalam seri The Chronicles of Narnia. Buku ini mengisahkan empat anak yang menemukan pintu ke dunia ajaib Narnia.', 14),
+(13, 'Brave New World', 'Aldous Huxley', 'Chatto & Windus', 1932, 'Brave New World adalah sebuah distopia yang menggambarkan masyarakat yang dikendalikan secara total oleh teknologi dan kebahagiaan yang dipaksakan. Buku ini mengangkat tema-tema seperti peran individu dalam masyarakat dan kebebasan.', 100),
+(14, 'Jane Eyre', 'Charlotte Brontë', 'Smith, Elder & Co.', 1847, 'Jane Eyre mengisahkan perjalanan seorang wanita muda yang mencari identitas dan cinta sejati. Buku ini mengangkat tema-tema seperti kesetaraan gender dan kemandirian.', 5),
+(15, 'The Alchemist', 'Paulo Coelho', 'HarperCollins', 1988, 'The Alchemist mengisahkan perjalanan seorang gembala muda yang mencari harta karun yang tersembunyi. Buku ini mengangkat tema-tema seperti takdir, impian, dan arti hidup.', 4),
+(16, 'Moby-Dick', 'Herman Melville', 'Harper & Brothers', 1851, 'Moby-Dick adalah sebuah kisah tentang obsesi seorang kapten kapal penangkap ikan paus untuk memburu paus putih raksasa bernama Moby Dick. Buku ini mengangkat tema-tema seperti kekuatan alam dan obsesi manusia.', 10),
+(17, 'The Adventures of Huckleberry Finn', 'Mark Twain', 'Chatto & Windus', 1884, 'The Adventures of Huckleberry Finn mengisahkan petualangan Huckleberry Finn dan Jim, seorang budak yang melarikan diri, di sungai Mississippi. Buku ini mengangkat tema-tema seperti rasisme dan kebebasan.', 10),
+(18, 'The Da Vinci Code', 'Dan Brown', 'Doubleday', 2003, 'The Da Vinci Code adalah sebuah thriller misteri yang menggambarkan upaya seorang ahli simbol untuk memecahkan kode rahasia terkait dengan Gereja Katolik. Buku ini mengangkat tema-tema seperti konspirasi dan agama.', 8),
+(19, 'The Picture of Dorian Gray', 'Oscar Wilde', 'Lippincott\'s Monthly Magazine', 1890, 'The Picture of Dorian Gray mengisahkan tentang seorang pria yang tidak menua dan terus mempertahankan kecantikannya, sementara lukisan wajahnya yang terkutuk menua dan memperlihatkan dosa-dosanya. Buku ini mengangkat tema-tema seperti keindahan, moralitas, dan dualitas manusia.', 12),
+(20, 'The Little Prince', 'Antoine de Saint-Exupéry', 'Reynal & Hitchcock', 1943, 'The Little Prince adalah sebuah kisah tentang seorang pilot yang bertemu dengan seorang anak laki-laki dari planet lain. Buku ini mengajarkan tentang arti persahabatan, kehidupan, dan tanggung jawab.', 15),
+(21, 'The Kite Runner', 'Khaled Hosseini', 'Riverhead Books', 2003, 'The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.The Kite Runner mengisahkan tentang persahabatan dan pengkhianatan antara dua anak laki-laki di Afghanistan. Buku ini mengangkat tema-tema seperti keadilan, penebusan, dan trauma perang.', 10);
 
 -- --------------------------------------------------------
 
@@ -114,190 +114,70 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `peminjaman` (
-  `id` bigint UNSIGNED NOT NULL,
-  `members_id` bigint UNSIGNED NOT NULL,
-  `books_id` bigint UNSIGNED NOT NULL,
-  `tanggal_peminjaman` datetime NOT NULL,
-  `tanggal_pengembalian` datetime NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sessions`
---
-
-CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('eryvNb8zRKPN0DTDa49uzPk9gb7jcFf4aiCaVJEG', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMTF6WGdGWXI0cHZ2QlBUWmtyZEQ5UDRvcU1tZmE1TU1uYm1oODJvdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fX0=', 1692298432);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text COLLATE utf8mb4_unicode_ci,
-  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci,
-  `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `current_team_id` bigint UNSIGNED DEFAULT NULL,
-  `profile_photo_path` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL,
+  `id_buku` int NOT NULL,
+  `id_anggota` int NOT NULL,
+  `tanggal_pinjam` date NOT NULL,
+  `tanggal_kembali` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `books`
+-- Indexes for table `admin`
 --
-ALTER TABLE `books`
+ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `failed_jobs`
+-- Indexes for table `anggota`
 --
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Indexes for table `members`
---
-ALTER TABLE `members`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `members_username_unique` (`username`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
+ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_reset_tokens`
+-- Indexes for table `buku`
 --
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`email`);
+ALTER TABLE `buku`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `peminjaman_members_id_foreign` (`members_id`),
-  ADD KEY `peminjaman_books_id_foreign` (`books_id`);
-
---
--- Indexes for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
-
---
--- Indexes for table `sessions`
---
-ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `sessions_user_id_index` (`user_id`),
-  ADD KEY `sessions_last_activity_index` (`last_activity`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD KEY `peminjaman_ibfk_1` (`id_buku`),
+  ADD KEY `peminjaman_ibfk_2` (`id_anggota`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `books`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `books`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT for table `anggota`
 --
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `anggota`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `members`
+-- AUTO_INCREMENT for table `buku`
 --
-ALTER TABLE `members`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `buku`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 
 --
 -- Constraints for dumped tables
@@ -307,8 +187,8 @@ ALTER TABLE `users`
 -- Constraints for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `peminjaman_books_id_foreign` FOREIGN KEY (`books_id`) REFERENCES `books` (`id`),
-  ADD CONSTRAINT `peminjaman_members_id_foreign` FOREIGN KEY (`members_id`) REFERENCES `members` (`id`);
+  ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `peminjaman_ibfk_2` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
