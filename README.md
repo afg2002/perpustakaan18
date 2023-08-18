@@ -1,5 +1,5 @@
 # perpus18
-Tugas Pemrograman Web Lanjut tentang Perpustakaan Online Menggunakan PHP dan MySQL.
+Beberapa fitur ada yanag ditambahkan seperti di admin, ditambahkan fitur search dan pagination. Dan juga untuk bagian list buku dibuat table (bukan card seperti sebelumnya)
 
 ![Tampilan Login](https://raw.githubusercontent.com/afg2002/perpusr6ypwl/main/preview_image/tampilan_login.png)
 ![Screenshot 66](https://raw.githubusercontent.com/afg2002/perpusr6ypwl/main/preview_image/Screenshot%20(66).png)
