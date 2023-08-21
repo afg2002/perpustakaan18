@@ -46,20 +46,31 @@ $result = mysqli_query($conn, $query);
   <div class="container">
     <h1 class="title">Data Buku</h1>
     <a class="button is-primary" href="tambah_buku.php">Tambah Buku</a>
-
-    
-
-    <!-- Form pencarian -->
-    <form action="data_buku.php" method="GET" class="mb-3 mt-5">
-      <div class="field has-addons">
-        <div class="control">
-          <input class="input" type="text" name="search" placeholder="Cari judul buku">
-        </div>
-        <div class="control">
-          <button class="button is-info" type="submit">Cari</button>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+           <!-- Form pencarian -->
+          <form action="data_buku.php" method="GET" class="mb-3 mt-5">
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input" type="text" name="search" placeholder="Cari judul buku">
+              </div>
+              <div class="control">
+                <button class="button is-info" type="submit">Cari</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
+      <div class="level-right">
+        <div class="level-item">
+        <a class="button is-info" href="./laporan/laporan_DataBuku.php" target="_blank">Print Data Buku</a>
+        </div>
+      </div>
+    </div>
+    
+
+   
 
     <table class="table is-striped is-hoverable" style="width:100%;">
       <thead>

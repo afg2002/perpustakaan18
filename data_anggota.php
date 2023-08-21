@@ -45,17 +45,31 @@ $result = mysqli_query($conn, $query);
     <h1 class="title">Data Anggota</h1>
     <a class="button is-primary" href="tambah_anggota.php">Tambah Anggota</a>
 
-    <!-- Form pencarian -->
-    <form action="data_anggota.php" method="GET" class="mb-3 mt-5">
-      <div class="field has-addons">
-        <div class="control">
-          <input class="input" type="text" name="search" placeholder="Cari nama anggota">
-        </div>
-        <div class="control">
-          <button class="button is-info" type="submit">Cari</button>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <!-- Form pencarian -->
+          <form action="data_anggota.php" method="GET" class="mb-3 mt-5">
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input" type="text" name="search" placeholder="Cari nama anggota">
+              </div>
+              <div class="control">
+                <button class="button is-info" type="submit">Cari</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
+      <div class="level-right">
+        <div class="level-item">
+          <!-- Tombol Print -->
+          <a class="button is-info" href="./laporan/laporan_DataAnggota.php" target="_blank">Print Data Anggota</a>
+        </div>
+      </div>
+    </div>
+
+
 
     <table class="table is-striped is-hoverable" style="width:100%;">
       <thead>
@@ -82,26 +96,27 @@ $result = mysqli_query($conn, $query);
             $email = $row['email'];
             $role = $row['role'];
             ?>
-            <tr>
-              <td><?php echo $id; ?></td>
-              <td><?php echo $nama; ?></td>
-              <td><?php echo $username; ?></td>
-              <td><?php echo $alamat; ?></td>
-              <td><?php echo $email; ?></td>
-              <td><?php echo $role; ?></td>
-              <td>
-                <a href="edit_anggota.php?id=<?php echo $id; ?>" class="button is-primary is-small">Edit</a>
-                <a href="hapus_anggota.php?id=<?php echo $id; ?>" class="button is-danger is-small" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">Hapus</a>
-              </td>
-            </tr>
-          <?php
+        <tr>
+          <td><?php echo $id; ?></td>
+          <td><?php echo $nama; ?></td>
+          <td><?php echo $username; ?></td>
+          <td><?php echo $alamat; ?></td>
+          <td><?php echo $email; ?></td>
+          <td><?php echo $role; ?></td>
+          <td>
+            <a href="edit_anggota.php?id=<?php echo $id; ?>" class="button is-primary is-small">Edit</a>
+            <a href="hapus_anggota.php?id=<?php echo $id; ?>" class="button is-danger is-small"
+              onclick="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">Hapus</a>
+          </td>
+        </tr>
+        <?php
           }
         } else {
           // Jika data anggota tidak ditemukan
           ?>
-          <tr>
-            <td colspan="7">Tidak ada data anggota.</td>
-          </tr>
+        <tr>
+          <td colspan="7">Tidak ada data anggota.</td>
+        </tr>
         <?php
         }
         ?>

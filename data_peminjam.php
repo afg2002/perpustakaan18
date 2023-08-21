@@ -38,17 +38,28 @@ include 'header.php';
   <div class="container">
     <h1 class="title">Data Peminjaman</h1>
 
-    <!-- Form pencarian -->
-    <form action="data_peminjam.php" method="GET" class="mb-3 mt-5">
-      <div class="field has-addons">
-        <div class="control">
-          <input class="input" type="text" name="search" placeholder="Cari judul buku atau nama anggota">
-        </div>
-        <div class="control">
-          <button class="button is-info" type="submit">Cari</button>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <!-- Form pencarian -->
+          <form action="data_peminjam.php" method="GET" class="mb-3 mt-5">
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input" type="text" name="search" placeholder="Cari judul buku atau nama anggota">
+              </div>
+              <div class="control">
+                <button class="button is-info" type="submit">Cari</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
+      <div class="level-right">
+        <div class="level-item">
+        <a class="button is-info" href="./laporan/laporan_DataPeminjaman.php" target="_blank">Print Data Peminjam</a>
+        </div>
+      </div>
+    </div>
 
     <?php
     // Periksa apakah ada data peminjaman
