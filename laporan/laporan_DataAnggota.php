@@ -4,16 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cetak Data Anggota</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="../assets/css/bulma.min.css">
+  <script src="../assets/js/paged.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      margin: 20px auto;
-      max-width: 800px;
-      text-align: center;
-    }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh; /* Mencapai tinggi viewport penuh */
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        text-align: center;
+      }
+
     .kop-surat {
       display: flex;
       justify-content: center;
@@ -41,7 +48,7 @@
     }
     table {
       border-collapse: collapse;
-      width: 90%;
+      width: 80%;
       margin: 20px auto;
     }
     th, td {
@@ -67,9 +74,11 @@
       margin-bottom: 100px;
     }
     @page {
-      size: auto;
-      margin: 0;
-      padding: 20px;
+      
+      @bottom-right{
+        content : 'Page ' counter(page) ' of ' counter(pages) 
+      }
+      
     }
   </style>
 </head>
@@ -145,4 +154,8 @@
 </body>
 </html>
 
-<script>window.print()</script>
+<script>
+  setTimeout(() => {
+    window.print()
+  }, 3500);
+</script>

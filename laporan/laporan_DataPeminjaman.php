@@ -15,16 +15,23 @@ $result = mysqli_query($conn, $query);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Laporan Data Peminjaman</title>
+  <link rel="stylesheet" href="../assets/css/bulma.min.css">
+  <script src="../assets/js/paged.js"></script>
   <style>
-    /* Gaya tampilan untuk cetak */
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      margin: 20px auto;
-      max-width: 800px;
-      text-align: center;
-    }
+   body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh; /* Mencapai tinggi viewport penuh */
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        text-align: center;
+      }
+
     .kop-surat {
       display: flex;
       justify-content: center;
@@ -52,7 +59,7 @@ $result = mysqli_query($conn, $query);
     }
     table {
       border-collapse: collapse;
-      width: 90%;
+      width: 80%;
       margin: 20px auto;
     }
     th, td {
@@ -66,7 +73,7 @@ $result = mysqli_query($conn, $query);
     .tanda-tangan {
       text-align: right;
       margin-top: 50px;
-      margin-right: 80px;
+      margin-right: 80px; /* Tambahkan margin kanan pada tanda tangan */
     }
     .ttd {
       margin-top: 20px;
@@ -78,9 +85,11 @@ $result = mysqli_query($conn, $query);
       margin-bottom: 100px;
     }
     @page {
-      size: auto;
-      margin: 0;
-      padding: 20px;
+      
+      @bottom-right{
+        content : 'Page ' counter(page) ' of ' counter(pages) 
+      }
+      
     }
   </style>
 </head>
@@ -146,4 +155,8 @@ $result = mysqli_query($conn, $query);
 </body>
 </html>
 
-<script>window.print()</script>
+<script>
+  setTimeout(() => {
+    window.print()
+  }, 3500);
+</script>
